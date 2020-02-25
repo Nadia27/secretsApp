@@ -26,7 +26,10 @@ Secrets website is modeled from Whisper App which allows user to submit their se
 
 
 * Level 2 Security - Encryption
+
+
           * Encryption is basically scrambling the original message.
+
           * Examples of encryption:
               * Caesar's cipher
               * Vigenere's cipher
@@ -41,4 +44,3 @@ Secrets website is modeled from Whisper App which allows user to submit their se
           * mongoose-encryption works by encrypting when the `save()` is called and decrypt when `find()` is called.
           * The password field is now long binary string instead of plaintext
           * This level of security is not much more secure compared to Level 1 because secret password is exposed in app.js
-           
