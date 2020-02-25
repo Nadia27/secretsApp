@@ -58,4 +58,4 @@ Secrets website is modeled from Whisper App which allows user to submit their se
         userSchema.plugin(encrypt, { secret: secret, encryptedFields: ['password']});
 
         // This adds _ct and _ac fields to the schema, as well as pre 'init' and pre 'save' middleware,
-       // and encrypt, decrypt, sign, and authenticate instance methods
+        // and encrypt, decrypt, sign, and authenticate instance methods
