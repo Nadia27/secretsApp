@@ -20,8 +20,12 @@ Secrets website is modeled from Whisper App which allows user to submit their se
 
 
 * Level 1 Security - Email & Password
+
+
           * User email and password stored using Mongoose & MongoDB
+
           * This level of security displays the users' password in plaintext in database.
+
           * Most users use the same email & password across multiple sites so storing user passwords in plaintext is a definite NO!
 
 
@@ -33,14 +37,18 @@ Secrets website is modeled from Whisper App which allows user to submit their se
           * Examples of encryption:
               * Caesar's cipher
               * Vigenere's cipher
+
           * Encryption requires a key to unscramble message
+
           * NPM package mongoose-encryption is used to achieve encryption https://www.npmjs.com/package/mongoose-encryption
+
 
           ```const secret = "Thisismylittlesecret.";
 
           userSchema.plugin(encrypt, { secret: secret, encryptedFields: ['password']});
 
           ```
+          
           * mongoose-encryption works by encrypting when the `save()` is called and decrypt when `find()` is called.
           * The password field is now long binary string instead of plaintext
           * This level of security is not much more secure compared to Level 1 because secret password is exposed in app.js
