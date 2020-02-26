@@ -36,7 +36,7 @@ Secrets website is modeled from Whisper App which allows user to submit their se
 * __Level 2 Security - Encryption__
 
 
-  - Encryption is basically scrambling the original message.
+  - Encryption is basically taking a password and using some type of key and cipher method to ciphertext.
 
   - Examples of encryption:
       * Caesar's cipher
@@ -59,3 +59,19 @@ Secrets website is modeled from Whisper App which allows user to submit their se
 
         // This adds _ct and _ac fields to the schema, as well as pre 'init' and pre 'save' middleware,
         // and encrypt, decrypt, sign, and authenticate instance methods
+
+  - To combat this issue environment variables we used.  I accomplished this by using an npm module dotenv <https://www.npmjs.com/package/dotenv>
+
+  - Environment variables are kept in a simple .env file which is used to keep sensitive variables and/or API keys safe.
+
+* __Level 3 Security - Hashing__
+
+  - Hashing takes away the need of an encryption key as previous needed with Level 2 security.
+
+  - Hashing uses a hash function turns to passwords and/or sensitive data into a hashes. Hash passwords are then stored into the db
+
+  - Hash functions are mathematical equations that are designed to make it almost impossible to go backwards.
+
+  - Hashing was achieved by using NPM module md5 <https://www.npmjs.com/package/md5>
+
+  - When a hash function is ran on a value it produces the same hash value every time. This eliminates the need for reversing the function for data verification.
