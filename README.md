@@ -75,3 +75,20 @@ Secrets website is modeled from Whisper App which allows user to submit their se
   - Hashing was achieved by using NPM module md5 <https://www.npmjs.com/package/md5>
 
   - When a hash function is ran on a value it produces the same hash value every time. This eliminates the need for reversing the function for data verification.
+
+* __Level 3 Security - Salting & Hashing__
+
+  - Hashing alone does not provide adequate security. A better way at protecting passwords is to add salt to passwords.  
+
+  - Salting adds random unique data to passwords. Those random characters are then appended to sensitive user data and ran through the hash function.
+
+  - Adding salt increases complexity and makes our user database a bit more secure.
+
+  - I used the node.bcrypt.js to hash and salt passwords. <https://www.npmjs.com/package/bcrypt>
+
+  - bcrypt slows down the attack.
+
+   > bcrypt was designed for password hashing hence it is a slow algorithm.  This is good for password hashing as it reduces the number of passwords by second an attacker could hash when crafting a dictionary attack.
+
+
+  - Salt rounds allows you to set the number of times you would like to salt your sensitive data.  
