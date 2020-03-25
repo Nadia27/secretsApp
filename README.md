@@ -76,7 +76,7 @@ Secrets website is modeled from Whisper App which allows user to submit their se
 
   - When a hash function is ran on a value it produces the same hash value every time. This eliminates the need for reversing the function for data verification.
 
-* __Level 3 Security - Salting & Hashing__
+* __Level 4 Security - Salting & Hashing__
 
   - Hashing alone does not provide adequate security. A better way at protecting passwords is to add salt to passwords.  
 
@@ -90,5 +90,30 @@ Secrets website is modeled from Whisper App which allows user to submit their se
 
    > bcrypt was designed for password hashing hence it is a slow algorithm.  This is good for password hashing as it reduces the number of passwords by second an attacker could hash when crafting a dictionary attack.
 
+   - Salt rounds allows you to set the number of times you would like to salt your sensitive data.
 
-  - Salt rounds allows you to set the number of times you would like to salt your sensitive data.  
+* __Level 5 Security - Cookies & Sessions__
+
+  - Cookies are used to establish and maintain a Session
+
+  - A session is a period of time when a browser interacts with a Server
+
+  - Cookies and Session are implemented through my site using Passport
+
+  - NPM packages used:
+      - passport - used to authenticate request
+      - passport-local - local authentication strategy for users using username and password
+      - passport-local-mongoose - Mongoose plugin
+      - express-session - allows authentication between client and session
+
+* __Level 6 Security - Third Party OAuth2.0__
+
+  - OAuth - Open Authorization, open standard for open-based token authorization
+
+  - Why OAuth?
+
+    - Granular level access - developer can decide the type of data needed
+
+    - Read/Read+Write Access - allows read only or both read/write
+
+    - Revoke Access - user can deauthorize access that was originally  granted 
