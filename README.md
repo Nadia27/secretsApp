@@ -98,7 +98,7 @@ Secrets website is modeled from Whisper App which allows user to submit their se
 
   - A session is a period of time when a browser interacts with a Server
 
-  - Cookies and Session are implemented through my site using Passport
+  - Cookies and Session are implemented through my site using Passport <http://www.passportjs.org/>
 
   - NPM packages used:
       - passport - used to authenticate request
@@ -116,4 +116,4 @@ Secrets website is modeled from Whisper App which allows user to submit their se
 
     - Read/Read+Write Access - allows read only or both read/write
 
-    - Revoke Access - user can deauthorize access that was originally  granted 
+    - Revoke Access - user can deauthorize access that was originally  granted
