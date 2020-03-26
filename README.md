@@ -94,9 +94,13 @@ Secrets website is modeled from Whisper App which allows user to submit their se
 
 * __Level 5 Security - Cookies & Sessions__
 
-  - Cookies are used to establish and maintain a Session
+  - HTTP protocol is stateless, with every request we would need to re-verify the user. To avoid this problem cookie/session based authentication was introduced.
 
-  - A session is a period of time when a browser interacts with a Server
+  - Cookies are used to establish and maintain a Session. 
+
+  - A session is a period of time when a browser interacts with a server. A session must be kept both server and client-side.
+
+  - The server needs to keep track of an active session in a database or memory, while on the front-end a cookie is created.  
 
   - Cookies and Session are implemented through my site using Passport <http://www.passportjs.org/>
 
