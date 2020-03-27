@@ -30,7 +30,6 @@ app.use(session({
 // Initialize passport
 app.use(passport.initialize());
 
-// Use passport to setup session
 app.use(passport.session());
 
 mongoose.connect('mongodb://localhost:27017/userDB', { useNewUrlParser: true, useUnifiedTopology: true});
@@ -44,18 +43,22 @@ const userSchema = new mongoose.Schema ({
   secret: String
 });
 
-// Hash/salt passwords and save users to db
+// Username/password login with passport
+// will add a username, hash and salt field to store the username, the hashed password and the salt value
 userSchema.plugin(passportLocalMongoose);
+
 userSchema.plugin(findOrCreate);
 
 const User = new mongoose.model("User", userSchema);
 
 passport.use(User.createStrategy());
 
+// Write user.id to session
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
+// Read user.id from session
 passport.deserializeUser((id, done) => {
   User.findById(id, (err, user) => {
     done(err, user);
@@ -83,7 +86,7 @@ passport.use(new FacebookStrategy({
   },
   (accessToken, refreshToken, profile, cb) => {
     console.log(profile)
-    User.findOrCreate({ facebookId: profile.id }, (err, user) =>{
+    User.findOrCreate({ facebookId: profile.id }, (err, user) => {
       return cb(err, user);
     });
   }
@@ -93,11 +96,12 @@ app.get('/', (req, res) => {
    res.render('home');
 });
 
-// Use passport to authenticate user using the google strategy
+// Redirect user to Google for authentication
 app.get('/auth/google',
   passport.authenticate('google',  { scope: ['profile'] })
 );
 
+// Redirect to this url after successful authentication
 app.get('/auth/google/secrets',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
@@ -105,14 +109,15 @@ app.get('/auth/google/secrets',
     res.redirect('/secrets');
   });
 
-// Use passport to authenticate user using facebook strategy
+// Redirect user to Facebook for authentication
 app.get('/auth/facebook',
   passport.authenticate('facebook'));
 
+// Facebook will redirect to this url after successful authentication
 app.get('/auth/facebook/secrets',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
     (req, res) => {
-      // Successful authentication, redirect home.
+      // Successful authentication, redirect to secrets page
       res.redirect('/secrets');
     });
 
@@ -124,12 +129,15 @@ app.get('/register', (req, res) => {
    res.render('register');
 });
 
+
 app.get('/secrets', (req, res) => {
+  // Select documents where secret field is not equal to null
   User.find({'secret': {$ne: null}}, (err, foundUsers) => {
     if (err) {
       console.log(err);
     } else {
       if (foundUsers) {
+        // Render secrets ejs template 
         res.render('secrets', {usersWithSecrets: foundUsers})
       }
     }
